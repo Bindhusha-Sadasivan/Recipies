@@ -1,3 +1,16 @@
   <div class="container" >
-  <p>Recipie item works!</p>
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="" class="list-group-item clearfix d-flex justify-content-between mt-3 mb-3"
+        >
+          <div class="pull-left">
+            <h4 class="list-group-item-heading">{{receivedRecipie.name}}</h4>
+            <p class="list-group-item-text">{{receivedRecipie.description}}</p>
+          </div>
+          <span class="pull-right">
+            <img  [src]="receivedRecipie.imagePath" alt="" class="img-responsive" style="max-height: 50px;">
+          </span>
+        </a>
+      </div>
+    </div>
 </div>

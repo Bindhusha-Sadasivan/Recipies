@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Recipie } from '../../../Model/recipie.model';
 
 @Component({
   selector: 'app-recipie-item',
@@ -9,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './recipie-item.component.css'
 })
 export class RecipieItemComponent {
-
+@Input() receivedRecipie!:{name:string, description:string, imagePath:string};
 }
