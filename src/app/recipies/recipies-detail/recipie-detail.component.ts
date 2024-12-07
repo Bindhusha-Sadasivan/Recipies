@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Recipie } from '../../Model/recipie.model';
 
 @Component({
   selector: 'app-recipie-detail',
@@ -9,4 +10,5 @@ import { Component } from '@angular/core';
   styleUrl: './recipie-detail.component.css'
 })
 export class RecipieDetailComponent {
+  @Input() receivedRecipie!:Recipie;
 }

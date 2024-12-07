@@ -10,6 +10,8 @@
 
 <div class="container">
   <div *ngFor="let recipie of recipie">
-    <app-recipie-item [receivedRecipie]="recipie"></app-recipie-item>
+    <app-recipie-item [receivedRecipie]="recipie"
+                      (selectedRecipie)="handleSelectedRecipie(recipie)"
+                      ></app-recipie-item>
   </div>
 </div>

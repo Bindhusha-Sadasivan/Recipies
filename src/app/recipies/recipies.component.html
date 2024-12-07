@@ -1,10 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
-      <app-recipie-list></app-recipie-list>
+    <div class="col-md-5 mb-5">
+      <!-- <app-recipie-list (recipieWasSelected)="selectedRecipie=$event"></app-recipie-list> -->
+      <app-recipie-list (recipieWasSelected)="recipieHasBeenSelected($event)"></app-recipie-list>
     </div>
     <div class="col-md-7">
-      <app-recipie-detail></app-recipie-detail>
+      <!-- <app-recipie-detail *ngIf="selectedRecipie" [receivedRecipie]="selectedRecipie"></app-recipie-detail>
+      <div *ngIf="!selectedRecipie"> <p>Please select a Recipie!</p></div> -->
+      <div class="container mt-5">
+        <div class="row">
+          <app-recipie-detail *ngIf="selectedRecipie" [receivedRecipie]="selectedRecipie"></app-recipie-detail>
+          <div *ngIf="!selectedRecipie"> <p>Please select a Recipie!</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

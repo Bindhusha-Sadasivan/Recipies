@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipie } from '../../../Model/recipie.model';
 
 @Component({
@@ -10,5 +10,10 @@ import { Recipie } from '../../../Model/recipie.model';
   styleUrl: './recipie-item.component.css'
 })
 export class RecipieItemComponent {
-@Input() receivedRecipie!:{name:string, description:string, imagePath:string};
+@Input() receivedRecipie!:Recipie;
+@Output() selectedRecipie = new EventEmitter<any>();
+
+onSelectRecipie(){
+this.selectedRecipie.emit();
+}
 }

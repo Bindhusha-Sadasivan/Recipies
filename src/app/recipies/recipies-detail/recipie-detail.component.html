@@ -1,13 +1,13 @@
   <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <img src="" alt="" class="img-resposive">
+      <img [src]="receivedRecipie.imagePath" alt="" class="img-resposive" style="max-height: 50px;">
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12 mb-2">
-      <h3>Recipie Name</h3>
+      <h3>{{receivedRecipie.name}}</h3>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
 
   <div class="rox">
     <div class="col-xs-12">
-      <h4>Description</h4>
+      <h4>{{receivedRecipie.description}}</h4>
     </div>
   </div>
 
