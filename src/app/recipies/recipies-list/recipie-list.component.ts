@@ -17,5 +17,5 @@ recipie: Recipie[] = [
   new Recipie("A Test Recipie", "Description of a Test Recipie", "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg"),
   new Recipie("A Test Recipie", "Description of a Test Recipie", "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg")
 ];
-//  loadInitially:boolean=false;
+
 }
