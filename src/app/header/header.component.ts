@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  @Output() recipieFeature = new EventEmitter<string>();
+
+  onClickRecipies(feature:string){
+    this.recipieFeature.emit(feature);
+    this.recipieFeature.subscribe(data => console.log(data));
+  }
 }

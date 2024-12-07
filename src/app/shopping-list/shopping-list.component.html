@@ -1,16 +1,18 @@
-<p>shopping-list works!</p>
-<hr>
-<div class="row">
-  <div class="col-xs-10">
-    <app-shopping-edit></app-shopping-edit>
+<!-- <div class="container" *ngIf="loadInitially"> -->
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-10">
+      <app-shopping-edit></app-shopping-edit>
+    </div>
+    <p>The List</p>
+    <div class="col-4">
+      <ul class="list-group ">
+        <a class="list-group-item"
+           style="cursor:pointer"
+           *ngFor = "let i of ingredients">
+           {{i.name}} ({{i.amount}})
+          </a>
+      </ul>
+    </div>
   </div>
-  <hr>
-  <p>The List</p>
-  <ul class="list-group">
-    <a class="list-group-item"
-       style="cursor:pointer"
-       *ngFor = "let i of ingredients">
-       {{i.name}} ({{i.amount}})
-      </a>
-  </ul>
 </div>

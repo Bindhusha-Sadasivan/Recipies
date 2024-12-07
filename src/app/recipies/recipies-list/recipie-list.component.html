@@ -1,27 +1,27 @@
-  <div class="row">
-    <div class="col-xs-12">
-      <button type="button" class="btn btn-primary">
-        New Recipie
-      </button>
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-primary mb-3 mt-3">
+          New Recipie
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="" class="list-group-item clearfix d-flex justify-content-between mt-3 mb-3"
+        *ngFor="let recipie of recipie">
+          <div class="pull-left">
+            <h4 class="list-group-item-heading">{{recipie.name}}</h4>
+            <p class="list-group-item-text">{{recipie.description}}</p>
+          </div>
+          <span class="pull-right">
+            <img  [src]="recipie.imagePath" alt="" class="img-responsive" style="max-height: 50px;">
+          </span>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <a href="" class="list-group-item clearfix d-flex justify-content-between"
-      *ngFor="let recipie of recipie">
-
-        <div class="pull-left">
-          <h4 class="list-group-item-heading">{{recipie.name}}</h4>
-          <p class="list-group-item-text">{{recipie.description}}</p>
-        </div>
-
-        <span class="pull-right">
-          <img  [src]="recipie.imagePath" alt="" class="img-responsive" style="max-height: 50px;">
-        </span>
-      </a>
-    </div>
-  </div>
-
-
-<app-recipie-item></app-recipie-item>
+<div class="container">
+  <app-recipie-item></app-recipie-item>
+</div>

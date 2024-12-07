@@ -1,48 +1,49 @@
-<p>shopping-edit works!</p>
-<div class="row">
-  <div class="col-xs-12">
-    <form>
-      <div class="row">
-        <div class="col-sm-5">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text"
-                   id="name"
-                   class="form-control"
-                   >
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form>
+        <div class="row mb-3">
+          <div class="col-3">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text"
+                     id="name"
+                     class="form-control"
+                     >
+            </div>
+          </div>
+
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="amount">Amount</label>
+              <input type="number"
+                     id="amount"
+                     class="form-control"
+                     >
+            </div>
           </div>
         </div>
 
-        <div class="col-sm-2">
-          <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number"
-                   id="amount"
-                   class="form-control"
-                   >
+        <div class="row mb-3">
+          <div class="col-xs-12">
+            <button type="button"
+                    class="btn btn-success me-3">
+              Add
+            </button>
+
+            <button type="button"
+                    class="btn btn-danger me-3">
+              Delete
+            </button>
+
+            <button type="button"
+                    class="btn btn-primary">
+              Edit
+            </button>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button"
-                  class="btn btn-success">
-            Add
-          </button>
-
-          <button type="button"
-                  class="btn btn-danger">
-            Delete
-          </button>
-
-          <button type="button"
-                  class="btn btn-primary">
-            Edit
-          </button>
-        </div>
-      </div>
-
-    </form>
+      </form>
+    </div>
   </div>
 </div>

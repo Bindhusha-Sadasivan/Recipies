@@ -1,3 +1,15 @@
-<app-header></app-header>
-<app-recipies></app-recipies>
-<app-shopping-list></app-shopping-list>
+<div class="container">
+  <div class="row">
+    <app-header (recipieFeature)="checkRecipieFeature($event)"></app-header>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <app-recipies *ngIf="loadedRecipieFeature==='recipie'"></app-recipies>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <app-shopping-list *ngIf="loadedRecipieFeature!=='recipie'"></app-shopping-list>
+  </div>
+</div>
