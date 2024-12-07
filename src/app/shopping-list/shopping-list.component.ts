@@ -15,4 +15,9 @@ export class ShoppingListComponent {
     new Ingredients( "Apple" , 5),
     new Ingredients( "Tomato" , 10)
   ];
+
+
+  handleAddedName(addedInputs:any){
+    this.ingredients.push(addedInputs);
+  }
 }
