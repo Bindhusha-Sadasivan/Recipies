@@ -12,7 +12,7 @@ import { RecipiesService } from './recipies.service';
   imports: [RecipieListComponent, RecipieDetailComponent, CommonModule, FormsModule],
   templateUrl: './recipies.component.html',
   styleUrl: './recipies.component.css',
-  providers:[RecipiesService]
+  // providers:[RecipiesService]
 })
 export class RecipiesComponent implements OnInit{
 

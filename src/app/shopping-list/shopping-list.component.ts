@@ -3,6 +3,7 @@ import { ShoppingEditComponent } from "./shopping-edit/shopping-edit.component";
 import { Ingredients } from '../Model/ingredient.model';
 import { CommonModule } from '@angular/common';
 import { ShoppingListService } from './shopping-list.service';
+import { RecipiesService } from '../recipies/recipies.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -10,7 +11,7 @@ import { ShoppingListService } from './shopping-list.service';
   imports: [ShoppingEditComponent, CommonModule],
   templateUrl: './shopping-list.component.html',
   styleUrl: './shopping-list.component.css',
-  providers:[ShoppingListService]
+  // providers:[ShoppingListService]
 })
 export class ShoppingListComponent implements OnInit {
   // ingredients : Ingredients[] = [

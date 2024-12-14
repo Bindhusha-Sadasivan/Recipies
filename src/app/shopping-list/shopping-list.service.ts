@@ -12,7 +12,6 @@ private ingredients : Ingredients[] = [
     new Ingredients( "Apple" , 5),
     new Ingredients( "Tomato" , 10)
   ];
-  constructor() { }
 
   getIngredients(){
     return this.ingredients.slice();
@@ -22,4 +21,14 @@ private ingredients : Ingredients[] = [
     this.ingredients.push(ingredients);
     this.enteredIngredients.emit(this.ingredients.slice());
   }
+
+  receiveIngredientsFromRecipies(ingredients:Ingredients[]){
+    //  for(let ingredient of ingredients)
+    //  {
+    //   this.addedIngredients(ingredient);
+    //  }
+    this.ingredients.push(...ingredients);
+    this.enteredIngredients.emit(this.ingredients.slice());
+    }
+
 }

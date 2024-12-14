@@ -13,6 +13,6 @@ export class HeaderComponent {
 
   onClickRecipies(feature:string){
     this.recipieFeature.emit(feature);
-    this.recipieFeature.subscribe(data => console.log(data));
+    // this.recipieFeature.subscribe(data => console.log(data));
   }
 }

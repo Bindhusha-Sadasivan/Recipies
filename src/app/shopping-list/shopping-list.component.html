@@ -6,12 +6,12 @@
     </div>
     <p>The List</p>
     <div class="col-4">
-      <ul class="list-group ">
-        <a class="list-group-item"
+      <ul class="list-group " *ngFor = "let i of ingredients">
+        <li class="list-group-item"
            style="cursor:pointer"
-           *ngFor = "let i of ingredients">
+           >
            {{i.name}} ({{i.amount}})
-          </a>
+          </li>
       </ul>
     </div>
   </div>
