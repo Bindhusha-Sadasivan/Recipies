@@ -32,8 +32,9 @@ onAdd(){
   const enterdName:string = this.enterdName.nativeElement.value;
   const enteredAmount:number = this.enteredAmount.nativeElement.value;
   const newIngredient = new Ingredients(enterdName, enteredAmount);
-  this.shoppingListService.enteredIngredients.emit(newIngredient);
-  this.shoppingListService.enteredIngredients.subscribe(data => console.log(data))
+  // this.shoppingListService.enteredIngredients.emit(newIngredient);
+  // this.shoppingListService.enteredIngredients.subscribe(data => console.log(data));
+  this.shoppingListService.addedIngredients(newIngredient);
 }
 
 }

@@ -28,11 +28,16 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    // this.shoppingListService.enteredIngredients.subscribe(
+    //   (data:any) => {
+    //     this.ingredients.push(data);
+    //   }
+    // )
+
     this.shoppingListService.enteredIngredients.subscribe(
-      (data:any) => {
-        this.ingredients.push(data);
-      }
-    )
+      (data) => {
+        this.ingredients = data;
+      })
   }
 
 

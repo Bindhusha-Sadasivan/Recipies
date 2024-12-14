@@ -6,9 +6,9 @@ import { Ingredients } from '../Model/ingredient.model';
 })
 export class ShoppingListService {
 
-@Output() enteredIngredients = new EventEmitter<Ingredients>();
+enteredIngredients = new EventEmitter<Ingredients[]>();
 
-ingredients : Ingredients[] = [
+private ingredients : Ingredients[] = [
     new Ingredients( "Apple" , 5),
     new Ingredients( "Tomato" , 10)
   ];
@@ -16,5 +16,10 @@ ingredients : Ingredients[] = [
 
   getIngredients(){
     return this.ingredients.slice();
+  }
+
+  addedIngredients(ingredients:Ingredients){
+    this.ingredients.push(ingredients);
+    this.enteredIngredients.emit(this.ingredients.slice());
   }
 }
