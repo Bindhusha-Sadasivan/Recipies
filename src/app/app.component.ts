@@ -16,11 +16,11 @@ import { RecipiesService } from './recipies/recipies.service';
   providers:[ShoppingListService, RecipiesService]
 })
 export class AppComponent {
-  title = 'Recipes';
+  // title = 'Recipes';
 
-  loadedRecipieFeature='recipie';
+  // loadedRecipieFeature='recipie';
 
-  checkRecipieFeature(feature:string){
-    this.loadedRecipieFeature = feature;
-  }
+  // checkRecipieFeature(feature:string){
+  //   this.loadedRecipieFeature = feature;
+  // }
 }
