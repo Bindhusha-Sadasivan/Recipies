@@ -8,7 +8,7 @@
            (click)="onSelectRecipie()"
         > -->
         <a class="list-group-item clearfix d-flex justify-content-between mt-3 mb-3" style="cursor: pointer;"
-
+        [routerLink]="[index]" routerLinkActive="router-link-active"
         >
           <div class="pull-left">
             <h4 class="list-group-item-heading">{{receivedRecipie.name}}</h4>

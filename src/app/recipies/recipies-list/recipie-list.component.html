@@ -9,11 +9,11 @@
   </div>
 
 <div class="container">
-  <div *ngFor="let recipie of recipie">
+  <div *ngFor="let recipie of recipie; let i=index">
     <!-- <app-recipie-item [receivedRecipie]="recipie"
                       (selectedRecipie)="handleSelectedRecipie(recipie)"
                       ></app-recipie-item> -->
-                      <app-recipie-item [receivedRecipie]="recipie"
+                      <app-recipie-item [receivedRecipie]="recipie" [index]="i"
                       ></app-recipie-item>
   </div>
 </div>
