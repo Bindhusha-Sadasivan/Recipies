@@ -19,11 +19,11 @@
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Manage Recipie <span class="caret"></span>
         </button>
-
+        <!-- removed href="#" as it relods the page -->
         <ul class="dropdown-menu">
           <li><a class="href dropdown-item" (click)="onAddToShoppingList()" style="cursor:pointer">To Shopping List</a></li>
-          <li><a href="#" class="href dropdown-item">Edit Recipie</a></li>
-          <li><a href="#" class="href dropdown-item">Delete Recipie</a></li>
+          <li><a style="cursor: pointer;" class="href dropdown-item">Edit Recipie</a></li>
+          <li><a style="cursor: pointer;" class="href dropdown-item">Delete Recipie</a></li>
         </ul>
       </div>
     </div>
