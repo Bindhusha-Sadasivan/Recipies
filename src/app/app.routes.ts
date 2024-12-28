@@ -4,6 +4,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
 import { RecipieListComponent } from './recipies/recipies-list/recipie-list.component';
 import { RecipieDetailComponent } from './recipies/recipies-detail/recipie-detail.component';
+import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.component';
 
 export const routes: Routes = [
 {
@@ -20,8 +21,16 @@ export const routes: Routes = [
       component: RecipeStartComponent
     },
     {
+      path:'new',
+      component: RecipieEditComponent
+    },
+    {
       path:':id',
       component: RecipieDetailComponent
+    },
+    {
+      path:':id/edit',
+      component: RecipieEditComponent
     }
   ]
 },
