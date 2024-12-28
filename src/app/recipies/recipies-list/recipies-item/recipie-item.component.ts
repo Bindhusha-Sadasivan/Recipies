@@ -19,8 +19,8 @@ constructor(private recipiesService:RecipiesService) {
 
 }
 
-onSelectRecipie(){
-// this.selectedRecipie.emit();
-this.recipiesService.selectedRecipie.emit(this.receivedRecipie);
-}
+// onSelectRecipie(){
+// // this.selectedRecipie.emit();
+// this.recipiesService.selectedRecipie.emit(this.receivedRecipie);
+// }
 }

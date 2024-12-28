@@ -43,6 +43,10 @@ export class RecipiesService {
     return this.recipie.slice();
   }
 
+  getRecipiesById(index:number){
+    return this.recipie[index];
+  }
+
   addIngredientsToShoppingList(ingredients:Ingredients[]){
     //Here we need to access the shopping list service
     this.shoppinglistService.receiveIngredientsFromRecipies(ingredients);
