@@ -27,7 +27,9 @@ export class RecipieDetailComponent implements OnInit{
     //Add 'implements OnInit' to the class.
     // const id = +this.route.snapshot.params['id'];
     // console.log(id);
-
+//As the below observables, we dont need to clear these. Angular will clear these route observables by itself.
+//Always keep this in mind. We dont need to clear the route subscription / observables manually. Angular will do this by itself.
+//Very very important to keep that in mind.
     this.route.params.subscribe(
       (params:Params) => {
         this.id = +params['id'];
