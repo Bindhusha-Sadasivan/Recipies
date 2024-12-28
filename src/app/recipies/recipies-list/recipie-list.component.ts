@@ -4,6 +4,7 @@ import { Recipie } from '../../Model/recipie.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RecipiesService } from '../recipies.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipie-list',
@@ -21,7 +22,11 @@ export class RecipieListComponent {
 
  recipie:Recipie[] = [];
 
-constructor(private recipieService:RecipiesService) {
+constructor(
+  private recipieService:RecipiesService,
+  private router:Router,
+  private route:ActivatedRoute
+) {
 this.recipie = this.recipieService.getRecipies();
 }
 
@@ -30,4 +35,8 @@ this.recipie = this.recipieService.getRecipies();
 // handleSelectedRecipie(recipie:Recipie){
 //   this.recipieWasSelected.emit(recipie);
 // }
+
+onClickRecipies(){
+  this.router.navigate(['new'], {relativeTo:this.route})
+}
 }

@@ -41,4 +41,10 @@ export class RecipieDetailComponent implements OnInit{
     this.recipiesService.addIngredientsToShoppingList(this.receivedRecipie.ingredients);
     console.log(this.recipiesService)
   }
+
+  onClickEditRecipie(){
+    this.router.navigate(['edit'], {relativeTo:this.route});
+    //The more complex way is given below. But dont prefer this.
+    // this.router.navigate(['../', this.id, 'edit'], {relativeTo:this.route});
+  }
 }
