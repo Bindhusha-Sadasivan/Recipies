@@ -10,8 +10,10 @@
       <div *ngIf="!selectedRecipie"> <p>Please select a Recipie!</p></div> -->
       <div class="container mt-5">
         <div class="row">
-          <app-recipie-detail *ngIf="selectedRecipie" [receivedRecipie]="selectedRecipie"></app-recipie-detail>
-          <div *ngIf="!selectedRecipie"> <p>Please select a Recipie!</p></div>
+          <!-- <app-recipie-detail *ngIf="selectedRecipie" [receivedRecipie]="selectedRecipie"></app-recipie-detail> -->
+          <!-- <div *ngIf="!selectedRecipie"> <p>Please select a Recipie!</p></div> -->
+           <router-outlet></router-outlet>
+
         </div>
       </div>
     </div>

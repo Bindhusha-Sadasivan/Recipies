@@ -5,11 +5,12 @@ import { Recipie } from '../Model/recipie.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecipiesService } from './recipies.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-recipies',
   standalone: true,
-  imports: [RecipieListComponent, RecipieDetailComponent, CommonModule, FormsModule],
+  imports: [RecipieListComponent, RecipieDetailComponent, CommonModule, FormsModule,RouterModule],
   templateUrl: './recipies.component.html',
   styleUrl: './recipies.component.css',
   // providers:[RecipiesService]
