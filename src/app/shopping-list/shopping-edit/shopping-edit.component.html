@@ -17,6 +17,7 @@
                       class="form-control"
                       ngModel
                       name="name"
+                      required
                      >
             </div>
           </div>
@@ -35,6 +36,8 @@
                      class="form-control"
                      ngModel
                      name="amount"
+                     required
+                     pattern="[1-9]+[0-9]*$"
                      >
             </div>
           </div>
@@ -48,7 +51,8 @@
               Add
             </button> -->
             <button type="submit"
-                    class="btn btn-success me-3">
+                    class="btn btn-success me-3"
+                    [disabled]="!form.valid">
               Add
             </button>
 
