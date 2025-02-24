@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecipiesService } from './recipies.service';
 import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipies',
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
 export class RecipiesComponent implements OnInit{
 
   selectedRecipie!:Recipie;
+  rescipiesSub!:Subscription;
 
   constructor(private recipiesService:RecipiesService) {
   }
@@ -25,7 +27,15 @@ export class RecipiesComponent implements OnInit{
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.recipiesService.selectedRecipie.subscribe(
+    //Using Event Emitter
+    // this.recipiesService.selectedRecipie.subscribe(
+    //   (recipie) => {
+    //     this.selectedRecipie = recipie;
+    //   }
+    // )
+
+    //Using Subject
+    this.rescipiesSub = this.recipiesService.selectedRecipie.subscribe(
       (recipie) => {
         this.selectedRecipie = recipie;
       }
@@ -35,4 +45,11 @@ export class RecipiesComponent implements OnInit{
   // recipieHasBeenSelected(selectedRecipie:Recipie){
     // this.selectedRecipie = selectedRecipie;
   // }
+
+  //Using Subject
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.rescipiesSub.unsubscribe();
+  }
 }

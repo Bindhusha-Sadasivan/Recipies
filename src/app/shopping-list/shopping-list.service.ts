@@ -1,12 +1,17 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Ingredients } from '../Model/ingredient.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
 
-enteredIngredients = new EventEmitter<Ingredients[]>();
+//using Event Emitter
+// enteredIngredients = new EventEmitter<Ingredients[]>();
+
+//using Subject
+enteredIngredients = new Subject<Ingredients[]>();
 
 private ingredients : Ingredients[] = [
     new Ingredients( "Apple" , 5),
@@ -19,7 +24,11 @@ private ingredients : Ingredients[] = [
 
   addedIngredients(ingredients:Ingredients){
     this.ingredients.push(ingredients);
-    this.enteredIngredients.emit(this.ingredients.slice());
+    //Replace emit by next if you are changing emit to next
+    // this.enteredIngredients.emit(this.ingredients.slice());
+
+    //Replace emit by next in Subject
+    this.enteredIngredients.next(this.ingredients.slice());
   }
 
   receiveIngredientsFromRecipies(ingredients:Ingredients[]){
@@ -28,7 +37,11 @@ private ingredients : Ingredients[] = [
     //   this.addedIngredients(ingredient);
     //  }
     this.ingredients.push(...ingredients);
-    this.enteredIngredients.emit(this.ingredients.slice());
+    //Replace emit by next if you are changing emit to next
+    // this.enteredIngredients.emit(this.ingredients.slice());
+
+    //Replace emit by next in Subject
+    this.enteredIngredients.next(this.ingredients.slice());
     }
 
 }

@@ -2,12 +2,17 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Recipie } from '../Model/recipie.model';
 import { Ingredients } from '../Model/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class RecipiesService {
 
-  @Output() selectedRecipie = new EventEmitter<Recipie>();
+  //using Event Emitter
+//  selectedRecipie = new EventEmitter<Recipie>();
+
+//using Subject
+selectedRecipie = new Subject<Recipie>();
 
   recipie: Recipie[] = [
     new Recipie(

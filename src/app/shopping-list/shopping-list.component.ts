@@ -4,6 +4,7 @@ import { Ingredients } from '../Model/ingredient.model';
 import { CommonModule } from '@angular/common';
 import { ShoppingListService } from './shopping-list.service';
 import { RecipiesService } from '../recipies/recipies.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
@@ -20,6 +21,8 @@ export class ShoppingListComponent implements OnInit {
   // ];
 
   @Input() ingredients:Ingredients[]=[];
+  //Using Subjects
+  ingSub!:Subscription;
 
 
   constructor(private shoppingListService:ShoppingListService) {
@@ -35,14 +38,28 @@ export class ShoppingListComponent implements OnInit {
     //   }
     // )
 
-    this.shoppingListService.enteredIngredients.subscribe(
+    //using Event Emitter
+    // this.shoppingListService.enteredIngredients.subscribe(
+    //   (data) => {
+    //     this.ingredients = data;
+    //   });
+
+    //Using Subject
+    this.ingSub = this.shoppingListService.enteredIngredients.subscribe(
       (data) => {
         this.ingredients = data;
-      })
+      });
   }
 
 
   // handleAddedName(addedInputs:any){
   //   this.ingredients.push(addedInputs);
   // }
+
+  //Using Subject
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.ingSub.unsubscribe();
+  }
 }
