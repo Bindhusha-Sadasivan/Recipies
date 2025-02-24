@@ -24,6 +24,10 @@ private ingredients : Ingredients[] = [
     return this.ingredients.slice();
   }
 
+  getIngredientsByIndex(index:number){
+    return this.ingredients[index];
+  }
+
   addedIngredients(ingredients:Ingredients){
     this.ingredients.push(ingredients);
     //Replace emit by next if you are changing emit to next

@@ -2,22 +2,24 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild, OnInit, OnDestr
 import { Ingredients } from '../../Model/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './shopping-edit.component.html',
   styleUrl: './shopping-edit.component.css'
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
 @ViewChild('nameInput') enterdName!:ElementRef<any>;
 @ViewChild('amountInput') enteredAmount!:ElementRef<any>;
+@ViewChild('form') slForm!:NgForm;
 editMode:boolean = false;
 subscription!:Subscription;
 editedItemIndex!:number;
+editedItem!:Ingredients;
 
 // @Output() onAddName = new EventEmitter<Ingredients>();
 
@@ -41,6 +43,14 @@ ngOnInit(): void {
       console.log(index);
       this.editMode = true;
       this.editedItemIndex = index;
+      this.editedItem = this.shoppingListService.getIngredientsByIndex(this.editedItemIndex);
+      this.slForm.setValue(
+        {
+          name : this.editedItem.name,
+          amount : this.editedItem.amount
+        }
+
+      )
     }
   )
 }
