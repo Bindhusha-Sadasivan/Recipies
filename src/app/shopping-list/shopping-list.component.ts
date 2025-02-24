@@ -56,6 +56,10 @@ export class ShoppingListComponent implements OnInit {
   //   this.ingredients.push(addedInputs);
   // }
 
+  onEditItem(j:number){
+    this.shoppingListService.startedEditing.next(j);
+    }
+
   //Using Subject
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

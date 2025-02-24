@@ -1,8 +1,9 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { Ingredients } from '../../Model/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -11,9 +12,12 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './shopping-edit.component.html',
   styleUrl: './shopping-edit.component.css'
 })
-export class ShoppingEditComponent {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
 @ViewChild('nameInput') enterdName!:ElementRef<any>;
 @ViewChild('amountInput') enteredAmount!:ElementRef<any>;
+editMode:boolean = false;
+subscription!:Subscription;
+editedItemIndex!:number;
 
 // @Output() onAddName = new EventEmitter<Ingredients>();
 
@@ -27,7 +31,18 @@ export class ShoppingEditComponent {
 
 
 constructor(private shoppingListService:ShoppingListService) {
+}
 
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  this.subscription = this.shoppingListService.startedEditing.subscribe(
+    (index:number)=>{
+      console.log(index);
+      this.editMode = true;
+      this.editedItemIndex = index;
+    }
+  )
 }
 
 // onAdd(){
@@ -44,4 +59,11 @@ const value = form.value;
 const newIngredient = new Ingredients(value.name, value.amount);
 this.shoppingListService.addedIngredients(newIngredient);
 }
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  this.subscription.unsubscribe();
+}
+
 }

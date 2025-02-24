@@ -13,6 +13,8 @@ export class ShoppingListService {
 //using Subject
 enteredIngredients = new Subject<Ingredients[]>();
 
+startedEditing = new Subject<number>();
+
 private ingredients : Ingredients[] = [
     new Ingredients( "Apple" , 5),
     new Ingredients( "Tomato" , 10)

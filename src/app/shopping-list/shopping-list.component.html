@@ -6,12 +6,17 @@
     </div>
     <p>The List</p>
     <div class="col-4">
-      <ul class="list-group " *ngFor = "let i of ingredients">
-        <li class="list-group-item"
+      <ul class="list-group " *ngFor = "let i of ingredients; let j=index">
+        <!-- <li class="list-group-item"
            style="cursor:pointer"
            >
            {{i.name}} ({{i.amount}})
-          </li>
+          </li> -->
+          <a class="list-group-item"
+           style="cursor:pointer"
+           (click)="onEditItem(j)">
+           {{i.name}} ({{i.amount}})
+          </a>
       </ul>
     </div>
   </div>
