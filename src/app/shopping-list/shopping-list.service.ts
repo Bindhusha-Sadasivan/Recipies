@@ -50,4 +50,9 @@ private ingredients : Ingredients[] = [
     this.enteredIngredients.next(this.ingredients.slice());
     }
 
+    updateIngredients(index:number, newIngredient:Ingredients){
+      this.ingredients[index] = newIngredient;
+      this.enteredIngredients.next(this.ingredients.slice())
+    }
+
 }

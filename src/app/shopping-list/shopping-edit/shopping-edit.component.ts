@@ -67,7 +67,12 @@ ngOnInit(): void {
 onSubmit(form:NgForm){
 const value = form.value;
 const newIngredient = new Ingredients(value.name, value.amount);
-this.shoppingListService.addedIngredients(newIngredient);
+if(this.editMode){
+  this.shoppingListService.updateIngredients(this.editedItemIndex, newIngredient)
+}
+else{
+  this.shoppingListService.addedIngredients(newIngredient);
+}
 }
 
 ngOnDestroy(): void {
