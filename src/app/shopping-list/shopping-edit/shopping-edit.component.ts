@@ -73,6 +73,7 @@ if(this.editMode){
 else{
   this.shoppingListService.addedIngredients(newIngredient);
 }
+this.editMode = false;
 }
 
 ngOnDestroy(): void {
