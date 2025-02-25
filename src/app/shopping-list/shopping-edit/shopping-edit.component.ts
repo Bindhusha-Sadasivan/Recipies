@@ -74,6 +74,7 @@ else{
   this.shoppingListService.addedIngredients(newIngredient);
 }
 this.editMode = false;
+form.reset();
 }
 
 ngOnDestroy(): void {
