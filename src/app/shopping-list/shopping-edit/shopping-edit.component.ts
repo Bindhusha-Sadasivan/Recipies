@@ -77,6 +77,11 @@ this.editMode = false;
 form.reset();
 }
 
+onClear(){
+  this.slForm.reset();
+  this.editMode = false;
+}
+
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
