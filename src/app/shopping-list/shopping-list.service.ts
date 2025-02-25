@@ -55,4 +55,9 @@ private ingredients : Ingredients[] = [
       this.enteredIngredients.next(this.ingredients.slice())
     }
 
+    deleteIngredients(index:number){
+      this.ingredients.splice(index,1);
+      this.enteredIngredients.next(this.ingredients.slice());
+    }
+
 }
