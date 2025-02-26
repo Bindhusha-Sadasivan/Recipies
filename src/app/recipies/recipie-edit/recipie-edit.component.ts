@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipiesService } from '../recipies.service';
 
 @Component({
   selector: 'app-recipie-edit',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './recipie-edit.component.html',
   styleUrl: './recipie-edit.component.css'
 })
@@ -54,5 +54,7 @@ export class RecipieEditComponent implements OnInit{
       'description': new FormControl(recipieDescription)
     });
   }
-
+  onSubmit(){
+    console.log(this.recipieForm);
+  }
 }
