@@ -75,4 +75,13 @@ export class RecipieEditComponent implements OnInit{
   onSubmit(){
     console.log(this.recipieForm);
   }
+
+  onAddIngredients(){
+    this.recipieFormControls.push(
+      new FormGroup({
+        'name': new FormControl(),
+        'amount' : new FormControl()
+      })
+    )
+  }
 }
