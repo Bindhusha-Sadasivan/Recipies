@@ -108,4 +108,8 @@ export class RecipieEditComponent implements OnInit{
   onCancel(){
     this.router.navigate(['../'], {relativeTo:this.route})
   }
+
+  oncDeleteIngredients(index:number){
+    (<FormArray>this.recipieForm.get('ingredients')).removeAt(index);
+  }
 }
