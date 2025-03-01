@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipiesService } from '../recipies.service';
 import { CommonModule } from '@angular/common';
 
@@ -18,6 +18,7 @@ export class RecipieEditComponent implements OnInit{
   recipieForm!: FormGroup;
 
   constructor(
+    private router:Router,
     private route: ActivatedRoute,
     private recipieService: RecipiesService
   ){}
@@ -77,9 +78,13 @@ export class RecipieEditComponent implements OnInit{
     if(this.editMode){
       this.recipieService.updateRecipie(this.id, this.recipieForm.value);
       console.log("Updated form",this.recipieForm);
+      this.recipieForm.reset();
+      this.router.navigate(['../'], {relativeTo:this.route})
     }
     else{
       this.recipieService.addRecipie(this.recipieForm.value);
+      this.recipieForm.reset();
+      this.router.navigate(['../'], {relativeTo:this.route})
     }
   }
 
@@ -97,5 +102,9 @@ export class RecipieEditComponent implements OnInit{
   hasInvalidIngredientsForm(){
     const ingredientsForm = this.recipieForm.get('ingredients') as FormArray;
     ingredientsForm.controls.some(ingredients => ingredients.invalid)
+  }
+
+  onCancel(){
+    this.router.navigate(['../'], {relativeTo:this.route})
   }
 }

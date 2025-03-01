@@ -49,4 +49,9 @@ export class RecipieDetailComponent implements OnInit{
     //The more complex way is given below. But dont prefer this.
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo:this.route});
   }
+
+  onClickDeleteRecipie(){
+    this.recipiesService.deleteRecipie(this.id);
+    this.router.navigate(['../'], {relativeTo:this.route});
+  }
 }

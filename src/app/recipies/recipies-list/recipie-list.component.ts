@@ -40,6 +40,7 @@ ngOnInit(): void {
     }
   )
 this.recipie = this.recipieService.getRecipies();
+this.recipieService.recipiesChanged.subscribe(recipie => this.recipie = recipie);
 }
 
 // @Output() recipieWasSelected = new EventEmitter<Recipie>();

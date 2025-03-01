@@ -68,4 +68,10 @@ recipiesChanged = new Subject<Recipie[]>();
     this.recipie[index] = recipie;
     this.recipiesChanged.next(this.recipie.slice());
   }
+
+  deleteRecipie(index:number){
+    this.recipie.splice(index, 1)
+    console.log(this.recipie);
+    this.recipiesChanged.next(this.recipie.slice());
+  }
 }
