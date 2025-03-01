@@ -14,6 +14,8 @@ export class RecipiesService {
 //using Subject
 selectedRecipie = new Subject<Recipie>();
 
+recipiesChanged = new Subject<Recipie[]>();
+
   recipie: Recipie[] = [
     new Recipie(
       "First Recipie",
@@ -55,5 +57,15 @@ selectedRecipie = new Subject<Recipie>();
   addIngredientsToShoppingList(ingredients:Ingredients[]){
     //Here we need to access the shopping list service
     this.shoppinglistService.receiveIngredientsFromRecipies(ingredients);
+  }
+
+  addRecipie(recipie:Recipie):any{
+    this.recipie.push(recipie);
+    this.recipiesChanged.next(this.recipie.slice());
+  }
+
+  updateRecipie(index:number, recipie:Recipie){
+    this.recipie[index] = recipie;
+    this.recipiesChanged.next(this.recipie.slice());
   }
 }

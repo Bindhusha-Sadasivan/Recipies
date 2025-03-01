@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { RecipieItemComponent } from "./recipies-item/recipie-item.component";
 import { Recipie } from '../../Model/recipie.model';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +27,18 @@ constructor(
   private router:Router,
   private route:ActivatedRoute
 ) {
+
+}
+
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+  this.recipieService.recipiesChanged.subscribe(
+    (recipie:Recipie[]) => {
+     console.log(recipie);
+     this.recipie = recipie
+    }
+  )
 this.recipie = this.recipieService.getRecipies();
 }
 

@@ -16,7 +16,6 @@ export class RecipieEditComponent implements OnInit{
   id!:number;
   editMode:boolean = false;
   recipieForm!: FormGroup;
-  disableSaveButton = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -75,15 +74,28 @@ export class RecipieEditComponent implements OnInit{
 
   onSubmit(){
     console.log(this.recipieForm);
+    if(this.editMode){
+      this.recipieService.updateRecipie(this.id, this.recipieForm.value);
+      console.log("Updated form",this.recipieForm);
+    }
+    else{
+      this.recipieService.addRecipie(this.recipieForm.value);
+    }
   }
 
   onAddIngredients(){
-    this.disableSaveButton = true;
-    this.recipieFormControls.push(
+    const ingredientsForm = this.recipieForm.get('ingredients') as FormArray;
+    ingredientsForm.push(
       new FormGroup({
-        'name': new FormControl('', [Validators.required]),
-        'amount' : new FormControl('', [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
+        'name': new FormControl(null, [Validators.required]),
+        'amount' : new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
       })
-    )
+    );
+    this.recipieForm.markAsTouched();
+  }
+
+  hasInvalidIngredientsForm(){
+    const ingredientsForm = this.recipieForm.get('ingredients') as FormArray;
+    ingredientsForm.controls.some(ingredients => ingredients.invalid)
   }
 }
