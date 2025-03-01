@@ -13,6 +13,7 @@ import { RecipiesService } from './recipies/recipies.service';
   imports: [RouterOutlet, RecipiesComponent, ShoppingListComponent, HeaderComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  //Entire apllication should share this two service. Should not inject thiese services seperately. Because that will create a new instance of the service aand the CRU operations becomes invalid
   providers:[ShoppingListService, RecipiesService]
 })
 export class AppComponent {
