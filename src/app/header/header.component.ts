@@ -25,7 +25,11 @@ export class HeaderComponent {
     this.dataStorageService.storeRecipies();
   }
 
-  onfetchData(){
-    this.dataStorageService.fetchRecipies();
+  // onfetchData(){
+  //   this.dataStorageService.fetchRecipies();
+  // }
+
+  onfetchData():any{
+    this.dataStorageService.fetchRecipies()?.subscribe();
   }
 }
