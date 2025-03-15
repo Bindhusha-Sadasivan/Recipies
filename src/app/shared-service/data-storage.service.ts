@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RecipiesService } from '../recipies/recipies.service';
+import { Recipie } from '../Model/recipie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,14 @@ export class DataStorageService {
       }}
     )
   }
+
+  fetchRecipies(){
+    this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json").subscribe({
+      next: (response:Recipie[]) => {
+        console.log(response)
+        this.recipieService.setRecipie(response);
+      }})
+  }
 }
-function next(value: Object): void {
-  throw new Error('Function not implemented.');
-}
+
 

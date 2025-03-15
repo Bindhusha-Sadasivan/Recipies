@@ -45,6 +45,11 @@ recipiesChanged = new Subject<Recipie[]>();
 
   constructor(private shoppinglistService:ShoppingListService) { }
 
+  setRecipie(recipies:Recipie[]){
+    this.recipie = recipies;
+    this.recipiesChanged.next(this.recipie.slice());
+  }
+
   getRecipies(){
     //Instead of calling the original array, here we are using the reference of the array. Slice will call the new instance / copy of the original array.
     return this.recipie.slice();
