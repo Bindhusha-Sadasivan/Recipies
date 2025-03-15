@@ -16,32 +16,34 @@ selectedRecipie = new Subject<Recipie>();
 
 recipiesChanged = new Subject<Recipie[]>();
 
-  recipie: Recipie[] = [
-    new Recipie(
-      "First Recipie",
-      "Description of a First Recipie",
-      "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
-      [
-        new Ingredients("Onion", 10),
-        new Ingredients("Tomato", 5)
-      ]),
-    new Recipie(
-      "Second Recipie",
-      "Description of a Second Recipie",
-      "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
-        [
-          new Ingredients("Brinjal", 10),
-          new Ingredients("Garlic", 5)
-        ]),
-    new Recipie(
-      "Third Recipie",
-      "Description of a Third Recipie",
-      "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
-      [
-        new Ingredients("Cabbage", 10),
-        new Ingredients("Shallots", 5)
-      ])
-  ];
+recipie: Recipie[] = [];
+
+  // recipie: Recipie[] = [
+  //   new Recipie(
+  //     "First Recipie",
+  //     "Description of a First Recipie",
+  //     "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
+  //     [
+  //       new Ingredients("Onion", 10),
+  //       new Ingredients("Tomato", 5)
+  //     ]),
+  //   new Recipie(
+  //     "Second Recipie",
+  //     "Description of a Second Recipie",
+  //     "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
+  //       [
+  //         new Ingredients("Brinjal", 10),
+  //         new Ingredients("Garlic", 5)
+  //       ]),
+  //   new Recipie(
+  //     "Third Recipie",
+  //     "Description of a Third Recipie",
+  //     "https://c8.alamy.com/comp/HW5KR2/cookies-forming-the-word-recipes-HW5KR2.jpg",
+  //     [
+  //       new Ingredients("Cabbage", 10),
+  //       new Ingredients("Shallots", 5)
+  //     ])
+  // ];
 
   constructor(private shoppinglistService:ShoppingListService) { }
 
