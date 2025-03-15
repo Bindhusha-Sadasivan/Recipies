@@ -6,6 +6,7 @@ import { HeaderComponent } from "./header/header.component";
 import { CommonModule } from '@angular/common';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipiesService } from './recipies/recipies.service';
+import { DataStorageService } from './shared-service/data-storage.service';
 
 @Component({
   selector: 'app-root',
