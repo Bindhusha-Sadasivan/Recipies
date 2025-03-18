@@ -30,6 +30,7 @@ export class HeaderComponent {
   // }
 
   onfetchData():any{
-    this.dataStorageService.fetchRecipies()?.subscribe();
+    // this.dataStorageService.fetchRecipies()?.subscribe();
+    this.dataStorageService.fetchRecipies()
   }
 }

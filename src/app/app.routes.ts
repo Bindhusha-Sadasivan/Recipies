@@ -5,7 +5,7 @@ import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.compo
 import { RecipieListComponent } from './recipies/recipies-list/recipie-list.component';
 import { RecipieDetailComponent } from './recipies/recipies-detail/recipie-detail.component';
 import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.component';
-import { recipiesResolverService } from './resolver/recipies-resolver.service';
+// import { recipiesResolverService } from './resolver/recipies-resolver.service';
 
 export const routes: Routes = [
 {
@@ -28,12 +28,12 @@ export const routes: Routes = [
     {
       path:':id',
       component: RecipieDetailComponent,
-      resolve: [recipiesResolverService]
+      // resolve: [recipiesResolverService]
     },
     {
       path:':id/edit',
       component: RecipieEditComponent,
-      resolve: [recipiesResolverService]
+      // resolve: [recipiesResolverService]
     }
   ]
 },

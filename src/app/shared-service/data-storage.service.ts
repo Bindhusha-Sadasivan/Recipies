@@ -24,35 +24,35 @@ export class DataStorageService {
     )
   }
 
-  // fetchRecipies(){
-  //   this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json")
-  //   .pipe(
-  //     map( recipies => {
-  //       return recipies.map( recipie => {
-  //         return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
-  //       })
-  //   }))
-  //   .subscribe({
-  //     next: (response:Recipie[]) => {
-  //       console.log(response)
-  //       this.recipieService.setRecipie(response);
-  //     }})
-  // }
-
-  //with Resolve
-  fetchRecipies():any{
+  fetchRecipies(){
     this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json")
     .pipe(
       map( recipies => {
         return recipies.map( recipie => {
           return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
         })
-    })),
-    tap((recipies:Recipie[]) => {
-      this.recipieService.setRecipie(recipies)
-    })
-
+    }))
+    .subscribe({
+      next: (response:Recipie[]) => {
+        console.log(response)
+        this.recipieService.setRecipie(response);
+      }})
   }
+
+  //with Resolve
+  // fetchRecipies():any{
+  //   this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json")
+  //   .pipe(
+  //     map( recipies => {
+  //       return recipies.map( recipie => {
+  //         return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
+  //       })
+  //   })),
+  //   tap((recipies:Recipie[]) => {
+  //     this.recipieService.setRecipie(recipies)
+  //   })
+
+  // }
 }
 
 
