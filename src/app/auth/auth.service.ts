@@ -9,9 +9,8 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  signup(email:string, password:string){
-
-    this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABNkTVMJuGL04SzxkoX92MgnIGHpTPTU0',
+  signup(email:string, password:string):any{
+    return this.http.post<authResponse>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyABNkTVMJuGL04SzxkoX92MgnIGHpTPTU0',
       {
         email:email,
         password:password,
