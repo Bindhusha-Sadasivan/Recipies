@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
+  isLoggedIn:boolean = true;
 
+  onSwitchMode(){
+    this.isLoggedIn = !this.isLoggedIn;
+  }
 }
