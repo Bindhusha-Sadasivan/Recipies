@@ -40,9 +40,19 @@ export class AuthComponent {
           console.log("Response:", response)
           this.isLoading = false;
         },
-        error: (error:any) => {
-          console.log("Error:", error)
-          this.error=error.message;
+        // error: (error:any) => {
+        //   console.log("Error:", error)
+        //   switch(error.error.error.message){
+        //     case 'EMAIL_EXISTS':
+        //       this.error = "This email already exists!!!"
+        //   }
+        //   // this.error = "An error occured!!!"
+        //   this.isLoading = false;
+        // }
+
+         error: (errorMessage:any) => {
+          console.log("Error:", errorMessage)
+          this.error = errorMessage;
           this.isLoading = false;
         }
       })
