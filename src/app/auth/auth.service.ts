@@ -1,12 +1,15 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { authResponse } from './interfaces/authResponcse.interface';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Subject, tap, throwError } from 'rxjs';
+import { User } from './auth/user/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  user = new Subject<User>();
 
   constructor(private http:HttpClient) { }
 
@@ -17,7 +20,14 @@ export class AuthService {
         password:password,
         returnSecureToken:true
       }
-    ).pipe(catchError (this.handleError))
+    ).pipe(catchError (this.handleError),
+      tap(response =>{
+        // const expDate = new Date(new Date().getTime() + +response.expiresIn*1000)
+        // const user = new User(response.email, response.localId, response.idToken, expDate);
+        // this.user.next(user);
+        this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn)
+      })
+          )
   }
 
   login(email:string, password:string):any{
@@ -27,7 +37,21 @@ export class AuthService {
         password:password,
         returnSecureToken:true
       }
-    ).pipe(catchError (this.handleError))
+    ).pipe(catchError (this.handleError),
+    //tap -> allows us to perform some actions without changing the response
+      tap(response =>{
+        // const expDate = new Date(new Date().getTime() + +response.expiresIn*1000)
+        // const user = new User(response.email, response.localId, response.idToken, expDate);
+        // this.user.next(user);
+        this.handleAuthentication(response.email, response.localId, response.idToken, +response.expiresIn)
+      })
+     )
+  }
+
+  private handleAuthentication(email:string,  localId:string, idToken:string, expiresIn:number){
+    const expDate = new Date(new Date().getTime() + expiresIn*1000)
+        const user = new User(email, localId, idToken, expDate);
+        this.user.next(user);
   }
 
   private handleError(error:HttpErrorResponse){
