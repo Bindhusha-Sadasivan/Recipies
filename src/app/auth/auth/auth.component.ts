@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from '../../shared-service/loading-spinner/loading-spinner.component';
 import { authResponse } from '../interfaces/authResponcse.interface';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +19,10 @@ export class AuthComponent {
   isLoading:boolean = false;
   error!:string;
 
-  constructor(private authservice:AuthService){}
+  constructor(
+    private authservice:AuthService,
+    private router:Router
+  ){}
 
   onSwitchMode(){
     this.isLoggedIn = !this.isLoggedIn;
@@ -49,6 +53,7 @@ export class AuthComponent {
       next: (response:any) => {
         console.log("Response:", response)
         this.isLoading = false;
+        this.router.navigate(['/recipies'])
       },
       error: (errorMessage:any) => {
         console.log("Error:", errorMessage)

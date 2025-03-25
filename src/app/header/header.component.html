@@ -7,12 +7,12 @@
           <li class="nav-item">
             <!-- <a class="nav-link active" aria-current="page" href="#" (click)="onClickRecipies('recipie')">Recipies</a> -->
             <a class="nav-link active" aria-current="page" [routerLink]="['/recipies']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Recipies</a>
+            [routerLinkActiveOptions]="{exact:true}" *ngIf="isAuthenticated">Recipies</a>
           </li>
           <li class="nav-item">
             <!-- <a class="nav-link" href="#" (click)="onClickRecipies('shopping-list')">Shopping List</a> -->
             <a class="nav-link" [routerLink]="['/auth']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Authenticate</a>
+            [routerLinkActiveOptions]="{exact:true}" *ngIf="!isAuthenticated">Authenticate</a>
           </li>
           <li class="nav-item">
             <!-- <a class="nav-link" href="#" (click)="onClickRecipies('shopping-list')">Shopping List</a> -->
@@ -24,6 +24,9 @@
 
     <div class="d-flex">
         <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item" *ngIf="isAuthenticated">
+              <a class="nav-link" style="cursor:pointer">Logout</a>
+            </li>
               <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Manage
@@ -34,7 +37,7 @@
                 </ul>
               </li> -->
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" *ngIf="isAuthenticated">
                 <a class="nav-link dropdown-toggle" style="cursor: pointer;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Manage
                 </a>
