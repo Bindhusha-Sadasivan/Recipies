@@ -12,6 +12,7 @@ export class AuthService {
   // user = new Subject<User>();
   user = new BehaviorSubject<User | null>(null);
   token:any = null;
+  private tokenExpirationTimer:any = null; //to store the timer for auto logout
 
   constructor(private http:HttpClient) { }
 
@@ -56,6 +57,7 @@ export class AuthService {
         this.user.next(user);
 
     localStorage.setItem('userData', JSON.stringify(user)); //store user data in local storage
+    this.autoLogout(expiresIn*1000); //set the timer for auto logout
   }
 
   private handleError(error:HttpErrorResponse){
@@ -88,6 +90,12 @@ export class AuthService {
 
   logout(){
     this.user.next(null);
+    // this.router.navigate(['/auth']);
+    localStorage.removeItem('userData'); //remove user data from local storage
+    if(this.tokenExpirationTimer){
+      clearTimeout(this.tokenExpirationTimer); //clear the timer
+    }
+    this.tokenExpirationTimer = null; //reset the timer
   }
 
   autoLogin(){
@@ -98,6 +106,15 @@ export class AuthService {
     const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
     if(loadedUser.token){
       this.user.next(loadedUser);
+      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime(); //calculate the expiration duration
+      this.autoLogout(expirationDuration); //set the timer for auto logout
     }
+  }
+
+  autoLogout(expirationDuration:number){
+    console.log(expirationDuration);
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
   }
 }
