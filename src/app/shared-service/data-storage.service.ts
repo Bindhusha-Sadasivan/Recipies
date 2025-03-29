@@ -27,40 +27,40 @@ export class DataStorageService {
   }
 
   fetchRecipies(){
-    this.authService.user.pipe(
-      take(1),
-      exhaustMap((user:any) => {
-        return this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json",
-          {
-            params:new HttpParams().set('auth', user?.token)
-          }
-        );
-      }),
-            map( recipies => {
-              return recipies.map( recipie => {
-                return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
-              })
-          }))
-          .subscribe({
-            next: (response:Recipie[]) => {
-              console.log(response)
-              this.recipieService.setRecipie(response);
-            }})
-      }
+    // this.authService.user.pipe(
+    //   take(1),
+    //   exhaustMap((user:any) => {
+    //     return this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json",
+    //       {
+    //         params:new HttpParams().set('auth', user?.token)
+    //       }
+    //     );
+    //   }),
+    //         map( recipies => {
+    //           return recipies.map( recipie => {
+    //             return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
+    //           })
+    //       }))
+    //       .subscribe({
+    //         next: (response:Recipie[]) => {
+    //           console.log(response)
+    //           this.recipieService.setRecipie(response);
+    //         }})
+    //   }
 
 
-    // this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json")
-    // .pipe(
-    //   map( recipies => {
-    //     return recipies.map( recipie => {
-    //       return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
-    //     })
-    // }))
-    // .subscribe({
-    //   next: (response:Recipie[]) => {
-    //     console.log(response)
-    //     this.recipieService.setRecipie(response);
-    //   }})
+    this.http.get<Recipie[]>("https://ng-recipies-web-api-default-rtdb.firebaseio.com/recipies.json")
+    .pipe(
+      map( recipies => {
+        return recipies.map( recipie => {
+          return {...recipie, ingredient: recipie.ingredients? recipie.ingredients : []}
+        })
+    }))
+    .subscribe({
+      next: (response:Recipie[]) => {
+        console.log(response)
+        this.recipieService.setRecipie(response);
+      }})
   }
 
   //with Resolve
@@ -78,6 +78,6 @@ export class DataStorageService {
 
   // }
 // }
-
+}
 
 

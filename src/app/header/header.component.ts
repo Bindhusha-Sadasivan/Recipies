@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { DataStorageService } from '../shared-service/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataStorageService:DataStorageService,
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router
   ) {  }
 
   ngOnInit(): void {
@@ -54,5 +55,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.userSubs.unsubscribe()
+  }
+
+  onLogOut(){
+    this.authService.logout();
+    this.router.navigate(['/auth']);
   }
 }
