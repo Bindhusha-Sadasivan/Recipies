@@ -6,6 +6,7 @@ import { RecipieListComponent } from './recipies/recipies-list/recipie-list.comp
 import { RecipieDetailComponent } from './recipies/recipies-detail/recipie-detail.component';
 import { RecipieEditComponent } from './recipies/recipie-edit/recipie-edit.component';
 import { AuthComponent } from './auth/auth/auth.component';
+import { AuthGuardGuard } from './auth/auth/auth-guard/auth-guard.guard';
 // import { recipiesResolverService } from './resolver/recipies-resolver.service';
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
 {
   path:'recipies',
   component: RecipiesComponent,
+  canActivate:[AuthGuardGuard],
   children: [
     {
       path:'',
@@ -40,7 +42,7 @@ export const routes: Routes = [
 },
 {
   path:'shopping',
-  component: ShoppingListComponent
+  component: ShoppingListComponent,
 },
 {
   path:'auth',
