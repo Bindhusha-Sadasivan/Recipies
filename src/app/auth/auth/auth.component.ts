@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { authResponse } from '../interfaces/authResponcse.interface';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertComponent } from "../../shared-service/alert/alert/alert.component";
+import { PlaceHolderDirective } from '../../shared-service/placeHolder/place-holder.directive';
 
 @Component({
   selector: 'app-auth',
@@ -19,6 +20,7 @@ export class AuthComponent {
   isLoggedIn:boolean = true;
   isLoading:boolean = false;
   error!:string;
+  @ViewChild(PlaceHolderDirective) alertHost!:PlaceHolderDirective
 
   constructor(
     private authservice:AuthService,
@@ -134,5 +136,8 @@ export class AuthComponent {
   private showErrorAlert(message:string){
     // const alertComp = new AlertComponent();
     const alertCompFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    hostViewContainerRef.clear(); //clear the view container reference before creating a new component
+    hostViewContainerRef.createComponent(alertCompFactory); //create the component
   }
 }
