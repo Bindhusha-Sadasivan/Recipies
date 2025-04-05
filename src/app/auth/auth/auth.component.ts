@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ComponentFactoryResolver } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,8 @@ export class AuthComponent {
 
   constructor(
     private authservice:AuthService,
-    private router:Router
+    private router:Router,
+    private componentFactoryResolver:ComponentFactoryResolver
   ){}
 
   onSwitchMode(){
@@ -59,6 +60,7 @@ export class AuthComponent {
       error: (errorMessage:any) => {
         console.log("Error:", errorMessage)
         this.error = errorMessage;
+        this.showErrorAlert(errorMessage);
         this.isLoading = false;
       }
     })
@@ -127,5 +129,10 @@ export class AuthComponent {
 
   onHandleError(){
     this.error = "";
+  }
+
+  private showErrorAlert(message:string){
+    // const alertComp = new AlertComponent();
+    const alertCompFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
   }
 }
