@@ -1,10 +1,10 @@
-import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from '../../shared-service/loading-spinner/loading-spinner.component';
 import { authResponse } from '../interfaces/authResponcse.interface';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AlertComponent } from "../../shared-service/alert/alert/alert.component";
 import { PlaceHolderDirective } from '../../shared-service/placeHolder/place-holder.directive';
@@ -16,11 +16,12 @@ import { PlaceHolderDirective } from '../../shared-service/placeHolder/place-hol
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
   isLoggedIn:boolean = true;
   isLoading:boolean = false;
   error!:string;
-  @ViewChild(PlaceHolderDirective) alertHost!:PlaceHolderDirective
+  @ViewChild(PlaceHolderDirective,{ static: false }) alertHost!:PlaceHolderDirective
+  closeSub !: Subscription
 
   constructor(
     private authservice:AuthService,
@@ -134,10 +135,27 @@ export class AuthComponent {
   }
 
   private showErrorAlert(message:string){
+    //These are all completely like a formula to render a component into the dom dynamically. After angular v9 it might not work properly.
     // const alertComp = new AlertComponent();
     const alertCompFactory = this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
     const hostViewContainerRef = this.alertHost.viewContainerRef;
     hostViewContainerRef.clear(); //clear the view container reference before creating a new component
     hostViewContainerRef.createComponent(alertCompFactory); //create the component
-  }
+    const componentRef = hostViewContainerRef.createComponent(alertCompFactory); //create the component
+    componentRef.instance.message = message; //set the message of the component
+    this.closeSub = componentRef.instance.close.subscribe(() => {
+      this.closeSub.unsubscribe(); //unsubscribe the close subscription to avoid memory leak
+      hostViewContainerRef.clear(); //clear the view container reference when the component is closed
+    } //close the component
+    );
+   }
+
+   ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.closeSub){
+      this.closeSub.unsubscribe(); //unsubscribe the close subscription to avoid memory leak
+    } //if the close subscription is not null then unsubscribe it to avoid memory leak
+    // this.closeSub.unsubscribe(); //unsubscribe the close subscription to avoid memory leak
+   }
 }
